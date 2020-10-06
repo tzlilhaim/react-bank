@@ -10,13 +10,13 @@ class Bank {
   async post(details) {
     const transaction = new this.Transaction(details)
     await transaction.save()
-    return this.get()
+    return await this.get()
   }
   async delete(transactionId) {
-    await this.city.deleteOne({ _id: transactionId }).exec(function (err) {
+    await this.Transaction.deleteOne({ _id: transactionId }).exec(function (err) {
       err !== null ? console.log(err) : null
     })
-    return this.get()
+    return await this.get()
   }
 }
 

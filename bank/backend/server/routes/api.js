@@ -28,7 +28,7 @@ router.post("/transaction", async function (req, res) {
   res.send(transactions)
 })
 
-router.delete("/transaction", async function (req, res) {
+router.delete("/transaction/:id", async function (req, res) {
   const id = req.params.id
   const transactions = await bank.delete(id)
   res.send(transactions)
