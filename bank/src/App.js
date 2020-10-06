@@ -60,12 +60,7 @@ class App extends Component {
           <Route
             exact
             path="/operations"
-            render={() => (
-              <Operations
-                operations={this.state.operations}
-                addTransaction={this.addTransaction}
-              />
-            )}
+            render={() => <Operations addTransaction={this.addTransaction} />}
           />
         </div>
       </Router>

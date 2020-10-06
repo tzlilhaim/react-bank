@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router-dom"
 //import "../../styles/transactions.css"
 
 class Operations extends Component {
@@ -13,12 +14,14 @@ class Operations extends Component {
         vendor: "^[a-zA-Z0-9. ]*$",
         category: "^[a-zA-Z0-9. ]*$",
       },
+      isOperationDone: false,
     }
   }
   resetInputs = () => this.setState({ amount: "", vendor: "", category: "" })
   makeOperation = (operation) => {
     this.props.addTransaction(operation)
     this.resetInputs()
+    this.setState({ isOperationDone: true })
   }
   onBtnClick = (event) => {
     const target = event.target
@@ -33,6 +36,7 @@ class Operations extends Component {
     }
     this.makeOperation(operation)
   }
+
   handleInputChange = (event) => {
     const target = event.target
     let value = target.value
@@ -47,7 +51,9 @@ class Operations extends Component {
   }
 
   render() {
-    return (
+    return this.state.isOperationDone ? (
+      <Redirect to="/transactions" />
+    ) : (
       <div id="operations-page">
         <div id="add-operation">
           <label htmlFor="amount-input">
