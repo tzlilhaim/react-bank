@@ -16,15 +16,26 @@ class App extends Component {
         { id: 2, amount: -20, vendor: "Subway", category: "Food" },
         { id: 3, amount: -98, vendor: "La Baguetterie", category: "Food" },
       ],
+      idTracker: 4,
     }
   }
+  addTransaction = (data) => {
+    const { amount, vendor, category } = data
+    const newTransaction = {
+      id: this.state.idTracker,
+      ...{ amount, vendor, category },
+    }
+    const updatedTransactions = [...this.state.transactions]
+    updatedTransactions.push(newTransaction)
+    this.setState({ transactions: updatedTransactions })
+  }
   deleteTransaction = (id) => {
-    const transactions = [...this.state.transactions]
-    transactions.splice(
-      transactions.findIndex((t) => t.id === id),
+    const updatedTransactions = [...this.state.transactions]
+    updatedTransactions.splice(
+      updatedTransactions.findIndex((t) => t.id === id),
       1
     )
-    this.setState({ transactions: transactions })
+    this.setState({ transactions: updatedTransactions })
   }
   render() {
     return (
@@ -49,7 +60,12 @@ class App extends Component {
           <Route
             exact
             path="/operations"
-            render={() => <Operations operations={this.state.operations} />}
+            render={() => (
+              <Operations
+                operations={this.state.operations}
+                addTransaction={this.addTransaction}
+              />
+            )}
           />
         </div>
       </Router>
