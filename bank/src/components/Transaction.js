@@ -3,7 +3,7 @@ import React, { Component } from "react"
 
 class Landing extends Component {
   deleteThisTransaction = () => {
-    this.props.deleteTransaction(this.props.transaction.id)
+    this.props.deleteTransaction(this.props.transaction._id)
   }
   render() {
     return (

@@ -1,41 +1,54 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import logo from "./logo.svg"
+import axios from "axios"
 import "./App.css"
 import Transactions from "./components/Transactions"
 import Operations from "./components/Operations"
 import Landing from "./components/Landing"
+const SERVER_PORT = 5000
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      transactions: [
-        { id: 0, amount: 3200, vendor: "Elevation", category: "Salary" },
-        { id: 1, amount: -7, vendor: "Runescape", category: "Entertainment" },
-        { id: 2, amount: -20, vendor: "Subway", category: "Food" },
-        { id: 3, amount: -98, vendor: "La Baguetterie", category: "Food" },
-      ],
+      transactions: [],
       idTracker: 4,
     }
   }
-  addTransaction = (data) => {
-    const { amount, vendor, category } = data
-    const newTransaction = {
-      id: this.state.idTracker,
-      ...{ amount, vendor, category },
-    }
-    const updatedTransactions = [...this.state.transactions]
-    updatedTransactions.push(newTransaction)
-    this.setState({ transactions: updatedTransactions })
+  componentDidMount() {
+    axios
+      .get(`http://localhost:${SERVER_PORT}/transactions`)
+      .then((transactions) => {
+        console.log(transactions)
+        this.setState({ transactions: transactions.data })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
-  deleteTransaction = (id) => {
-    const updatedTransactions = [...this.state.transactions]
-    updatedTransactions.splice(
-      updatedTransactions.findIndex((t) => t.id === id),
-      1
-    )
-    this.setState({ transactions: updatedTransactions })
+  addTransaction = async (data) => {
+    const { amount, vendor, category } = data
+    const newTransaction = { amount, vendor, category }
+    axios
+      .post(`http://localhost:${SERVER_PORT}/transaction`, newTransaction)
+      .then((updatedTransactions) => {
+        console.log(updatedTransactions)
+        this.setState({ transactions: updatedTransactions.data })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+  deleteTransaction = async (id) => {
+    axios
+      .delete(`http://localhost:${SERVER_PORT}/transaction/${id}`)
+      .then((updatedTransactions) => {
+        console.log(updatedTransactions)
+        this.setState({ transactions: updatedTransactions.data })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   render() {
     return (
