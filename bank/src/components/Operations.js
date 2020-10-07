@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-//import "../../styles/transactions.css"
+import "../styles/operations.css"
 
 class Operations extends Component {
   constructor(props) {
@@ -55,43 +55,38 @@ class Operations extends Component {
       <Redirect to="/transactions" />
     ) : (
       <div id="operations-page">
-        <div id="add-operation">
-          <label htmlFor="amount-input">
-            Amount:
-            <input
-              className="form-field"
-              type="text"
-              id="amount-input"
-              name="amount-input"
-              title="Operation amount"
-              value={this.state.amount}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label htmlFor="vendor-input">
-            Vendor:
-            <input
-              className="form-field"
-              type="text"
-              id="vendor-input"
-              name="vendor-input"
-              title="Operation vendor"
-              value={this.state.vendor}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label htmlFor="category-input">
-            Category:
-            <input
-              className="form-field"
-              type="text"
-              id="category-input"
-              name="category-input"
-              title="Operation category"
-              value={this.state.category}
-              onChange={this.handleInputChange}
-            />
-          </label>
+        <h2>Make an operation</h2>
+        <div id="make-operation">
+          <span className="amount">Amount:</span>
+          <input
+            className="form-field"
+            type="text"
+            id="amount-input"
+            name="amount-input"
+            title="Operation amount"
+            value={this.state.amount}
+            onChange={this.handleInputChange}
+          />
+          <span className="vendor">Vendor:</span>
+          <input
+            className="form-field"
+            type="text"
+            id="vendor-input"
+            name="vendor-input"
+            title="Operation vendor"
+            value={this.state.vendor}
+            onChange={this.handleInputChange}
+          />
+          <span>Category:</span>
+          <input
+            className="form-field"
+            type="text"
+            id="category-input"
+            name="category-input"
+            title="Operation category"
+            value={this.state.category}
+            onChange={this.handleInputChange}
+          />{" "}
           <button id="withdraw" onClick={this.onBtnClick}>
             Withdraw
           </button>

@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+#main-links {
+  background-color: rgb(198, 217, 253);
+  font-size: large;
+  font-weight: bold;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  height: 70px;
+  box-shadow: 1px 1px 5px black;
+}
+
+#main-links > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#main-links a {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button,
+input {
+  outline: none;
+  border: solid 1px black;
+}
+button:hover,
+button:active {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: solid 1px white;
+}

@@ -1,0 +1,16 @@
+tr.transaction[data-type="minus"] {
+  background-color: rgba(128, 60, 60, 0.671);
+}
+tr.transaction[data-type="plus"] {
+  background-color: rgba(60, 128, 60, 0.671);
+}
+td {
+  padding: 10px;
+}
+
+.delete {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}

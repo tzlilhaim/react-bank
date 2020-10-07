@@ -1,11 +1,12 @@
 import React, { Component } from "react"
 import Transaction from "./Transaction"
-//import "../../styles/transactions.css"
+import "../styles/transactions.css"
 
 class Transactions extends Component {
   render() {
     return (
       <div id="transactions-page">
+        <h2>All Transactions</h2>
         <table id="transactions">
           <tbody>
             <tr>
