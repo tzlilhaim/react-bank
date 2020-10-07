@@ -34,10 +34,14 @@ input {
   outline: none;
   border: solid 1px black;
 }
+
+button {
+  background-color: transparent;
+  color: black;
+  border: solid 1px black;
+}
 button:hover,
 button:active {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: white;
-  border: solid 1px white;
+  background-color: rgb(198, 217, 253);
 }
