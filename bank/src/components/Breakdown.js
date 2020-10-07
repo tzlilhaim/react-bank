@@ -3,27 +3,13 @@ import Category from "./Category"
 import "../styles/breakdown.css"
 
 class Breakdown extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      transactions: this.props.transactions,
-      categories: [],
-    }
-  }
-  componentWillReceiveProps = (nextProps) => {
-    if (this.props !== nextProps) {
-      this.setState({ transactions: nextProps.transactions }, () => {
-        const categories = []
-        this.state.transactions.forEach((transaction) => {
-          if (!categories.includes(transaction.category.toLowerCase())) {
-            categories.push(transaction.category.toLowerCase())
-          }
-        })
-        this.setState({ categories: categories })
-      })
-    }
-  }
   render() {
+    const categories = []
+    this.props.transactions.forEach((transaction) => {
+      if (!categories.includes(transaction.category.toLowerCase())) {
+        categories.push(transaction.category.toLowerCase())
+      }
+    })
     return (
       <div id="breakdown-page">
         <h2>Transactions Breakdown</h2>
@@ -35,11 +21,11 @@ class Breakdown extends Component {
                 <th className="total">Total</th>
                 <th>Report</th>
               </tr>
-              {this.state.categories.length ? (
-                this.state.categories.map((category, index) => {
+              {categories.length ? (
+                categories.map((category, index) => {
                   let total = 0,
                     transactions = []
-                  this.state.transactions.forEach((t) => {
+                  this.props.transactions.forEach((t) => {
                     if (t.category.toLowerCase() === category) {
                       transactions.push(t)
                       total += t.amount
