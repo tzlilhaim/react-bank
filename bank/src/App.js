@@ -5,6 +5,7 @@ import "./App.css"
 import Transactions from "./components/Transactions"
 import Operations from "./components/Operations"
 import Landing from "./components/Landing"
+import Breakdown from "./components/Breakdown"
 const SERVER_PORT = 5000
 
 class App extends Component {
@@ -12,14 +13,12 @@ class App extends Component {
     super()
     this.state = {
       transactions: [],
-      idTracker: 4,
     }
   }
   componentDidMount() {
     axios
       .get(`http://localhost:${SERVER_PORT}/transactions`)
       .then((transactions) => {
-        console.log(transactions)
         this.setState({ transactions: transactions.data })
       })
       .catch(function (error) {
@@ -32,7 +31,6 @@ class App extends Component {
     axios
       .post(`http://localhost:${SERVER_PORT}/transaction`, newTransaction)
       .then((updatedTransactions) => {
-        console.log(updatedTransactions)
         this.setState({ transactions: updatedTransactions.data })
       })
       .catch(function (error) {
@@ -43,7 +41,6 @@ class App extends Component {
     axios
       .delete(`http://localhost:${SERVER_PORT}/transaction/${id}`)
       .then((updatedTransactions) => {
-        console.log(updatedTransactions)
         this.setState({ transactions: updatedTransactions.data })
       })
       .catch(function (error) {
@@ -58,8 +55,17 @@ class App extends Component {
             <Link to={"/"}>Home</Link>
             <Link to={"/transactions"}>Transactions</Link>
             <Link to={"/operations"}>Operations</Link>
+            {this.state.transactions.length ? (
+              <Link to={"/breakdown"}>Breakdown</Link>
+            ) : null}
           </div>
-          <Route exact path="/" render={() => <Landing />} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Landing showBreakdown={this.state.transactions.length > 0} />
+            )}
+          />
           <Route
             exact
             path="/transactions"
@@ -74,6 +80,16 @@ class App extends Component {
             exact
             path="/operations"
             render={() => <Operations addTransaction={this.addTransaction} />}
+          />
+          <Route
+            exact
+            path="/breakdown"
+            render={() => (
+              <Breakdown
+                transactions={this.state.transactions}
+                deleteTransaction={this.deleteTransaction}
+              />
+            )}
           />
         </div>
       </Router>

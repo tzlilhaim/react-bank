@@ -9,6 +9,9 @@ class Landing extends Component {
         <h1>Bank</h1>
         <Link to={"/transactions"}>Transactions</Link>
         <Link to={"/operations"}>Operations</Link>
+        {this.props.showBreakdown ? (
+          <Link to={"/breakdown"}>Breakdown</Link>
+        ) : null}
       </div>
     )
   }
