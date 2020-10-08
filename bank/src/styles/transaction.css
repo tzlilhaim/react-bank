@@ -1,8 +1,8 @@
 tr.transaction[data-type="minus"] {
-  background-color: rgba(128, 60, 60, 0.671);
+  background-color: rgb(169 74 74 / 67%);
 }
 tr.transaction[data-type="plus"] {
-  background-color: rgba(60, 128, 60, 0.671);
+  background-color: rgb(70 146 70 / 67%);
 }
 td {
   padding: 10px;

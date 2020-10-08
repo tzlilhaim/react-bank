@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-//import "../../styles/landing.css"
+import "../styles/landing.css"
 
 class Landing extends Component {
   render() {

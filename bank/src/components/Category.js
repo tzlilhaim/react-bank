@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import Transaction from "./Transaction"
 import "../styles/category.css"
+import TransactionsTable from "./TransactionsTable"
 
 class Category extends Component {
   deleteThisTransaction = () => {
@@ -31,24 +31,10 @@ class Category extends Component {
             Transactions report
           </button>
           <div className="content">
-            <table>
-              <tbody>
-                <tr>
-                  <th>Amount</th>
-                  <th>Vendor</th>
-                  <th>Category</th>
-                </tr>
-                {this.props.transactions.map((t, index) => {
-                  return (
-                    <Transaction
-                      key={`${this.props.category}-${index}`}
-                      transaction={t}
-                      deleteTransaction={this.props.deleteTransaction}
-                    />
-                  )
-                })}
-              </tbody>
-            </table>
+            <TransactionsTable
+              transactions={this.props.transactions}
+              deleteTransaction={this.props.deleteTransaction}
+            />
           </div>
         </td>
       </tr>
