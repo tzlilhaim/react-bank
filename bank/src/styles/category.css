@@ -1,0 +1,24 @@
+.collapsible {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  border: solid 1px black;
+}
+
+.active {
+  background-color: rgb(160 153 116);
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: rgb(160 153 116 / 20%);
+  padding: 20px;
+}
+
+.content > table {
+  width: 100%;
+}

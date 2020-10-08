@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+* {
+  font-family: "Open Sans", sans-serif;
+}
+span,
+a,
+th,
+button,
+input,
+td {
+  font-weight: bold;
+  font-size: large;
+}
+
+.App {
+  text-align: center;
+}
+
+#main-links {
+  background-color: rgb(160 153 116);
+  display: grid;
+  grid-auto-flow: column;
+  height: 70px;
+  box-shadow: 1px 1px 5px black;
+}
+
+#main-links > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-links > a.inactive-tab:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#main-links a {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+th {
+  color: rgb(160 153 116);
+  font-size: larger;
+}
+
+button,
+input {
+  outline: none;
+  border: solid 1px black;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  color: black;
+  border: solid 1px black;
+}
+button:hover,
+button:active {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: solid 1px white;
+}
+
+.active-tab {
+  background-color:rgb(210 204 175);
+}
