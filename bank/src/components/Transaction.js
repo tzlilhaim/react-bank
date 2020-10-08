@@ -12,7 +12,7 @@ class Transaction extends Component {
         className="transaction"
         data-type={this.props.transaction.amount > 0 ? "plus" : "minus"}
       >
-        <td className="amount">{this.props.transaction.amount}</td>
+        <td className="amount">{this.props.transaction.amount}$</td>
         <td className="vendor">{this.props.transaction.vendor}</td>
         <td className="category">{this.props.transaction.category}</td>
         <td className="date">

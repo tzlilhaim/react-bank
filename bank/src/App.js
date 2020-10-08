@@ -16,6 +16,8 @@ class App extends Component {
       snackBarOpen: false,
       snackBarMsg: "",
       transactions: [],
+      balance: 0,
+      activeTab: "home",
     }
   }
   getTransactions = async () => {
@@ -23,7 +25,13 @@ class App extends Component {
   }
   async componentDidMount() {
     const transactions = await this.getTransactions()
-    this.setState({ transactions: transactions.data })
+    this.setState({ transactions: transactions.data }, () => {
+      let sum = 0
+      this.state.transactions.forEach((t) => {
+        sum += t.amount
+      })
+      this.setState({ balance: sum })
+    })
   }
   addTransaction = async (data) => {
     const { amount, vendor, category, date } = data
@@ -63,6 +71,9 @@ class App extends Component {
   snackBarClose = (event) => {
     this.setState({ snackBarOpen: false })
   }
+  setActiveTab = (tabName) => {
+    this.setState({ activeTab: tabName })
+  }
   render() {
     return (
       <Router>
@@ -84,18 +95,57 @@ class App extends Component {
             }
           />
           <div id="main-links">
-            <Link to={"/"}>Home</Link>
-            <Link to={"/transactions"}>Transactions</Link>
-            <Link to={"/operations"}>Operations</Link>
+            <Link
+              to={"/"}
+              className={
+                this.state.activeTab === "home" ? "active-tab" : "inactive-tab"
+              }
+            >
+              Home
+            </Link>
+            <Link
+              to={"/transactions"}
+              className={
+                this.state.activeTab === "transactions"
+                  ? "active-tab"
+                  : "inactive-tab"
+              }
+            >
+              Transactions
+            </Link>
+            <Link
+              to={"/operations"}
+              className={
+                this.state.activeTab === "operations"
+                  ? "active-tab"
+                  : "inactive-tab"
+              }
+            >
+              Operations
+            </Link>
             {this.state.transactions.length ? (
-              <Link to={"/breakdown"}>Breakdown</Link>
+              <Link
+                to={"/breakdown"}
+                className={
+                  this.state.activeTab === "breakdown"
+                    ? "active-tab"
+                    : "inactive-tab"
+                }
+              >
+                Breakdown
+              </Link>
             ) : null}
           </div>
           <Route
             exact
             path="/"
             render={() => (
-              <Landing showBreakdown={this.state.transactions.length > 0} />
+              <Landing
+                showBreakdown={this.state.transactions.length > 0}
+                setActiveTab={this.setActiveTab}
+                isActiveTab={this.state.activeTab === "home"}
+                balance={this.state.balance}
+              />
             )}
           />
           <Route
@@ -105,13 +155,23 @@ class App extends Component {
               <Transactions
                 deleteTransaction={this.deleteTransaction}
                 transactions={this.state.transactions}
+                setActiveTab={this.setActiveTab}
+                isActiveTab={this.state.activeTab === "transactions"}
+                balance={this.state.balance}
               />
             )}
           />
           <Route
             exact
             path="/operations"
-            render={() => <Operations addTransaction={this.addTransaction} />}
+            render={() => (
+              <Operations
+                addTransaction={this.addTransaction}
+                setActiveTab={this.setActiveTab}
+                isActiveTab={this.state.activeTab === "operations"}
+                balance={this.state.balance}
+              />
+            )}
           />
           <Route
             exact
@@ -120,6 +180,9 @@ class App extends Component {
               <Breakdown
                 transactions={this.state.transactions}
                 deleteTransaction={this.deleteTransaction}
+                setActiveTab={this.setActiveTab}
+                isActiveTab={this.state.activeTab === "breakdown"}
+                balance={this.state.balance}
               />
             )}
           />

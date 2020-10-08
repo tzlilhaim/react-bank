@@ -1,9 +1,16 @@
 import React, { Component } from "react"
 import Category from "./Category"
+import Balance from "./Balance"
 import "../styles/breakdown.css"
 
 class Breakdown extends Component {
+  setAsActiveTab = () => {
+    this.props.setActiveTab("breakdown")
+  }
   render() {
+    if (!this.props.isActiveTab) {
+      this.setAsActiveTab()
+    }
     const categories = []
     this.props.transactions.forEach((transaction) => {
       if (!categories.includes(transaction.category.toLowerCase())) {
@@ -12,6 +19,7 @@ class Breakdown extends Component {
     })
     return (
       <div id="breakdown-page">
+        <Balance balance={this.props.balance} />
         <h2>Transactions Breakdown</h2>
         {categories.length ? (
           <div id="categories">

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import moment from "moment"
 import { Redirect } from "react-router-dom"
+import Balance from "./Balance"
 import "../styles/operations.css"
 
 class Operations extends Component {
@@ -52,12 +53,18 @@ class Operations extends Component {
       this.setState({ [name]: value })
     }
   }
-
+  setAsActiveTab = () => {
+    this.props.setActiveTab("operations")
+  }
   render() {
+    if (!this.props.isActiveTab) {
+      this.setAsActiveTab()
+    }
     return this.state.isOperationDone ? (
       <Redirect to="/transactions" />
     ) : (
       <div id="operations-page">
+        <Balance balance={this.props.balance} />
         <h2>Make an operation</h2>
         <div id="make-operation">
           <span className="amount">Amount:</span>

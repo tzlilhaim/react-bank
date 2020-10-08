@@ -1,0 +1,6 @@
+#balance[data-is-balanced="true"] {
+    color: rgb(70 146 70 / 67%);
+  }
+  #balance[data-is-balanced="false"] {
+    color: rgb(169 74 74 / 67%);
+  }

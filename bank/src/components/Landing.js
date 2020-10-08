@@ -1,12 +1,20 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import Balance from "./Balance"
 import "../styles/landing.css"
 
 class Landing extends Component {
+  setAsActiveTab = () => {
+    this.props.setActiveTab("home")
+  }
   render() {
+    if (!this.props.isActiveTab) {
+      this.setAsActiveTab()
+    }
     return (
       <div id="home">
         <h1>Welcome to React Bank</h1>
+        <Balance balance={this.props.balance} />
         <div className="main">
           <div>
             <Link to={"/transactions"}>

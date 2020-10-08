@@ -26,7 +26,7 @@
   box-shadow: 1px 1px 5px black;
 }
 
-#make-operation input{
+#make-operation input {
   text-indent: 10px;
 }
 span.amount {
@@ -57,5 +57,10 @@ span.date {
   grid-area: w;
 }
 #deposit {
-    grid-area: de;
-  }
+  grid-area: de;
+}
+
+#operations-page #balance {
+  justify-self: flex-start;
+  margin-left: 5%;
+}

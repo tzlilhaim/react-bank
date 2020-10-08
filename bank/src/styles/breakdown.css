@@ -23,3 +23,8 @@
 #categories .total{
   width: 20%;
 }
+
+#breakdown-page #balance{
+  justify-self: flex-start;
+  margin-left:5%;
+}
