@@ -7,19 +7,41 @@ class Landing extends Component {
     return (
       <div id="home">
         <h1>Welcome to React Bank</h1>
-        <p>
-          Manage your transactions in the{" "}
-          <Link to={"/transactions"}>Transactions</Link> page
-        </p>
-        <p>
-          Make operations in the <Link to={"/operations"}>Operations</Link> page
-        </p>
-        {this.props.showBreakdown ? (
-          <p>
-            Check your transactions breakdown reports in the{" "}
-            <Link to={"/breakdown"}>Breakdown</Link> page
-          </p>
-        ) : null}
+        <div className="main">
+          <div>
+            <Link to={"/transactions"}>
+              <h2>Transactions</h2>
+              <div className="overlay">
+                <div className="call-to-action">
+                  Manage your transactions in the Transactions page
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div>
+            <Link to={"/operations"}>
+              <h2>Operations</h2>
+              <div className="overlay">
+                <div className="call-to-action">
+                  Make operations in the Operations page
+                </div>
+              </div>
+            </Link>
+          </div>
+          {this.props.showBreakdown ? (
+            <div>
+              <Link to={"/breakdown"}>
+                <h2>Breakdown</h2>
+                <div className="overlay">
+                  <div className="call-to-action">
+                    Check your transactions breakdown reports in the Breakdown
+                    page
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ) : null}
+        </div>
       </div>
     )
   }

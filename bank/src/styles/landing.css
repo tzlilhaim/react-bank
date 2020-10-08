@@ -1,0 +1,63 @@
+#home {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: 20px;
+}
+
+#home .main {
+  width: 80%;
+  height: 100%;
+  display: grid;
+  grid-gap: 5%;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: minmax(auto, 200px);
+  padding: 5%;
+  justify-self: center;
+}
+#home > .main > div {
+  background-color: rgb(210 204 175);
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#home > .main > div:hover .overlay {
+  opacity: 1;
+}
+
+#home a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: large;
+  color: black;
+}
+
+#home > .main .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: rgb(160 153 116);
+}
+
+.call-to-action {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
