@@ -26,8 +26,13 @@ class App extends Component {
     this.setState({ transactions: transactions.data })
   }
   addTransaction = async (data) => {
-    const { amount, vendor, category } = data
-    const newTransaction = { amount, vendor, category }
+    const { amount, vendor, category, date } = data
+    const newTransaction = {
+      amount,
+      vendor,
+      category,
+      date,
+    }
     axios
       .post(`http://localhost:${SERVER_PORT}/transaction`, newTransaction)
       .then((updatedTransactions) => {

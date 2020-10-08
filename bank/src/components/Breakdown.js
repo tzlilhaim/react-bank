@@ -13,16 +13,16 @@ class Breakdown extends Component {
     return (
       <div id="breakdown-page">
         <h2>Transactions Breakdown</h2>
-        <div id="categories">
-          <table>
-            <tbody>
-              <tr>
-                <th className="category-title">Category</th>
-                <th className="total">Total</th>
-                <th>Report</th>
-              </tr>
-              {categories.length ? (
-                categories.map((category, index) => {
+        {categories.length ? (
+          <div id="categories">
+            <table>
+              <tbody>
+                <tr>
+                  <th className="category-title">Category</th>
+                  <th className="total">Total</th>
+                  <th>Report</th>
+                </tr>
+                {categories.map((category, index) => {
                   let total = 0,
                     transactions = []
                   this.props.transactions.forEach((t) => {
@@ -40,15 +40,13 @@ class Breakdown extends Component {
                       deleteTransaction={this.props.deleteTransaction}
                     />
                   )
-                })
-              ) : (
-                <tr>
-                  <th>Nothing to see here...</th>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>No transactions found.</div>
+        )}
       </div>
     )
   }

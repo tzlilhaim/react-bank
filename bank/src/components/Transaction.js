@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import "../styles/transaction.css"
+import moment from "moment"
 
-class Landing extends Component {
+class Transaction extends Component {
   deleteThisTransaction = () => {
     this.props.deleteTransaction(this.props.transaction._id)
   }
@@ -14,6 +15,9 @@ class Landing extends Component {
         <td className="amount">{this.props.transaction.amount}</td>
         <td className="vendor">{this.props.transaction.vendor}</td>
         <td className="category">{this.props.transaction.category}</td>
+        <td className="date">
+          {moment(this.props.transaction.date).format("YYYY-MM-DD")}
+        </td>
         <td>
           <button onClick={this.deleteThisTransaction} className="delete">
             Delete
@@ -24,4 +28,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing
+export default Transaction

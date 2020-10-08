@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import moment from "moment"
 import { Redirect } from "react-router-dom"
 import "../styles/operations.css"
 
@@ -9,6 +10,7 @@ class Operations extends Component {
       amount: "",
       vendor: "",
       category: "",
+      date: moment().format("YYYY-MM-DD"),
       patterns: {
         amount: "^[0-9]*(.[0-9]+)?$",
         vendor: "^[a-zA-Z0-9. ]*$",
@@ -33,6 +35,7 @@ class Operations extends Component {
           : this.state.amount,
       vendor: this.state.vendor,
       category: this.state.category,
+      date: this.state.date,
     }
     this.makeOperation(operation)
   }
@@ -77,7 +80,7 @@ class Operations extends Component {
             value={this.state.vendor}
             onChange={this.handleInputChange}
           />
-          <span>Category:</span>
+          <span className="category">Category:</span>
           <input
             className="form-field"
             type="text"
@@ -86,7 +89,18 @@ class Operations extends Component {
             title="Operation category"
             value={this.state.category}
             onChange={this.handleInputChange}
-          />{" "}
+          />
+          <span className="date">Date:</span>
+          <input
+            className="form-field"
+            type="date"
+            id="date-input"
+            name="date-input"
+            title="Operation date"
+            value={moment(this.state.date).format("YYYY-MM-DD")}
+            max={moment().format("YYYY-MM-DD")}
+            onChange={this.handleInputChange}
+          />
           <button id="withdraw" onClick={this.onBtnClick}>
             Withdraw
           </button>

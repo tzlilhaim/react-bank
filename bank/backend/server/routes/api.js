@@ -12,8 +12,8 @@ router.get("/transactions", async function (req, res) {
 })
 
 router.post("/transaction", async function (req, res) {
-  const { amount, vendor, category } = req.body
-  const transactions = await bank.post({ amount, vendor, category })
+  const { amount, vendor, category, date } = req.body
+  const transactions = await bank.post({ amount, vendor, category, date })
   res.send(transactions)
 })
 
